@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dambalor Autos — Car Rental &amp; Taxi Services, Enugu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black: #0a0a0a;
+    --black-soft: #141414;
+    --plate: #1c1c1c;
+    --red: #e2261f;
+    --red-deep: #8f1310;
+    --off-white: #f2efe9;
+    --grey-line: #2c2c2c;
+    --chrome: #b7b7b0;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background: var(--black);
+    color: var(--off-white);
+    font-family: 'Work Sans', sans-serif;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3, .display{
+    font-family:'Bebas Neue', sans-serif;
+    letter-spacing: 0.04em;
+    font-weight:400;
+    line-height:0.95;
+  }
+
+  .mono{
+    font-family:'JetBrains Mono', monospace;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  ::selection{ background: var(--red); color: var(--black); }
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--red);
+    outline-offset: 3px;
+  }
+
+  .wrap{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- TOP BAR ---------- */
+  .topbar{
+    position: sticky;
+    top:0;
+    z-index: 50;
+    background: rgba(10,10,10,0.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--grey-line);
+  }
+  .topbar-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 14px 24px;
+    max-width: 1180px;
+    margin:0 auto;
+  }
+  .brand{
+    font-family:'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 0.06em;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .brand .dot{ color: var(--red); }
+  .social-row{ display:flex; gap:10px; }
+  .social-btn{
+    width:38px; height:38px;
+    border:1px solid var(--grey-line);
+    border-radius: 50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition: all .2s ease;
+  }
+  .social-btn:hover{ border-color: var(--red); background: var(--red); }
+  .social-btn svg{ width:18px; height:18px; stroke: var(--off-white); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position: relative;
+    padding: 120px 24px 90px;
+    border-bottom: 1px solid var(--grey-line);
+    overflow:hidden;
+  }
+  .hero::before{
+    /* road stripe motif */
+    content:"";
+    position:absolute;
+    left:0; right:0; bottom:0;
+    height: 3px;
+    background: repeating-linear-gradient(90deg, var(--red) 0 40px, transparent 40px 70px);
+    opacity:0.6;
+  }
+  .hero-inner{
+    max-width: 1180px;
+    margin: 0 auto;
+    position:relative;
+    z-index:2;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--red);
+    border: 1px solid var(--red-deep);
+    padding: 6px 12px;
+    border-radius: 3px;
+    margin-bottom: 28px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:6px; height:6px;
+    background: var(--red);
+    border-radius:50%;
+  }
+  .hero h1{
+    font-size: clamp(52px, 9vw, 118px);
+    color: var(--off-white);
+  }
+  .hero h1 span{ color: var(--red); }
+  .hero p.lede{
+    max-width: 560px;
+    margin-top: 24px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #c9c6bf;
+  }
+  .hero-cta{
+    margin-top: 40px;
+    display:flex;
+    flex-wrap:wrap;
+    gap: 16px;
+  }
+  .btn-primary{
+    background: var(--red);
+    color: var(--black);
+    font-weight: 700;
+    padding: 15px 30px;
+    border-radius: 3px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-size: 15px;
+    transition: transform .15s ease, background .15s ease;
+    border: none;
+    cursor:pointer;
+  }
+  .btn-primary:hover{ background: #ff3a32; transform: translateY(-2px); }
+  .btn-secondary{
+    border: 1px solid var(--grey-line);
+    padding: 15px 30px;
+    border-radius: 3px;
+    font-size: 15px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    transition: border-color .15s ease;
+  }
+  .btn-secondary:hover{ border-color: var(--off-white); }
+
+  .hero-plate{
+    margin-top: 56px;
+    display:inline-flex;
+    align-items:center;
+    gap:14px;
+    border: 2px solid var(--off-white);
+    border-radius: 6px;
+    padding: 10px 18px;
+    font-family:'JetBrains Mono', monospace;
+    font-weight:700;
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    background: var(--black-soft);
+  }
+  .hero-plate .flag{ color: var(--red); }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section{ padding: 100px 24px; border-bottom: 1px solid var(--grey-line); }
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap: 24px;
+    margin-bottom: 56px;
+    flex-wrap: wrap;
+  }
+  .section-tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform:uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+  }
+  .section-head h2{
+    font-size: clamp(36px, 5vw, 64px);
+    color: var(--off-white);
+  }
+  .section-head p{
+    max-width: 420px;
+    color: #a9a69f;
+    font-size: 15px;
+    line-height:1.6;
+  }
+
+  /* ---------- CARD GRID ---------- */
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .card{
+    background: var(--black-soft);
+    border: 1px solid var(--grey-line);
+    border-radius: 8px;
+    padding: 28px;
+    display:flex;
+    flex-direction:column;
+    gap: 18px;
+    position:relative;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .card:hover{ border-color: var(--red-deep); transform: translateY(-3px); }
+
+  .card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+  }
+  .icon-box{
+    width:48px; height:48px;
+    border-radius:6px;
+    background: var(--plate);
+    border: 1px solid var(--grey-line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .icon-box svg{ width:24px; height:24px; stroke: var(--red); fill:none; }
+
+  /* license plate code badge */
+  .plate-badge{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:700;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    background: var(--off-white);
+    color: var(--black);
+    padding: 5px 9px;
+    border-radius: 3px;
+    border: 2px solid var(--black);
+    box-shadow: 0 0 0 1px var(--chrome);
+  }
+
+  .card h3{
+    font-family:'Work Sans', sans-serif;
+    font-weight:700;
+    font-size: 19px;
+    letter-spacing:0;
+    line-height:1.3;
+    color: var(--off-white);
+  }
+  .card p{
+    font-size: 14px;
+    line-height:1.55;
+    color: #a9a69f;
+    flex-grow:1;
+  }
+
+  .card-cta{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--red);
+    padding-top: 6px;
+    border-top: 1px solid var(--grey-line);
+    margin-top: 4px;
+    transition: gap .15s ease;
+  }
+  .card-cta:hover{ gap:12px; }
+  .card-cta svg{ width:15px; height:15px; stroke: var(--red); }
+
+  /* ---------- WHY / TRUST STRIP ---------- */
+  .strip{
+    padding: 50px 24px;
+    border-bottom: 1px solid var(--grey-line);
+    background: var(--black-soft);
+  }
+  .strip-inner{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 32px;
+  }
+  .strip-item .num{
+    font-family:'Bebas Neue', sans-serif;
+    font-size: 44px;
+    color: var(--red);
+  }
+  .strip-item .label{
+    font-size: 13px;
+    color: #a9a69f;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-top:4px;
+  }
+
+  /* ---------- FOOTER / CONTACT ---------- */
+  .footer{
+    padding: 90px 24px 50px;
+    text-align:center;
+  }
+  .footer h2{
+    font-size: clamp(38px, 6vw, 72px);
+    color: var(--off-white);
+  }
+  .footer h2 span{ color: var(--red); }
+  .footer p{
+    color:#a9a69f;
+    max-width:480px;
+    margin: 18px auto 40px;
+    font-size:15px;
+    line-height:1.6;
+  }
+  .footer-socials{
+    display:flex;
+    justify-content:center;
+    gap:16px;
+    margin-top: 46px;
+  }
+  .footer-socials .social-btn{ width:52px; height:52px; }
+  .footer-socials .social-btn svg{ width:22px; height:22px; }
+
+  .footer-meta{
+    margin-top: 60px;
+    padding-top: 28px;
+    border-top: 1px solid var(--grey-line);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap: 12px;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #6d6a64;
+  }
+
+  @media (max-width: 640px){
+    .hero{ padding: 90px 20px 60px; }
+    .section{ padding: 64px 20px; }
+    .section-head{ flex-direction:column; align-items:flex-start; }
+    .footer-meta{ flex-direction:column; text-align:center; justify-content:center; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ scroll-behavior:auto !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">DAMBALOR<span class="dot">.</span>AUTOS</div>
+    <div class="social-row">
+      <a class="social-btn" href="https://wa.me/2349066570889" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 21l1.65-4.95A8.5 8.5 0 1112 20.5a8.4 8.4 0 01-4.3-1.18L3 21z" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.5 9.5c0 4 3.5 6.5 7 6.5.6 0 1-.5 1-1v-1.3c0-.3-.2-.5-.5-.6l-2-.5c-.3 0-.5 0-.7.2l-.6.7c-1.3-.6-2.4-1.7-3-3l.7-.6c.2-.2.3-.4.2-.7l-.5-2c0-.3-.3-.5-.6-.5H8.9c-.3 0-.4.2-.4.5z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="social-btn" href="https://instagram.com/dambalor_autos" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+      <a class="social-btn" href="https://tiktok.com/@Dambalorautos" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M15 3v10.5a3.5 3.5 0 11-3-3.46" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 3c.4 2.3 2 4 4.5 4.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Enugu, Nigeria &nbsp;·&nbsp; Rental &amp; Taxi Services</div>
+    <h1>YOUR CAR,<br>OUR <span>RESPONSIBILITY.</span></h1>
+    <p class="lede">Dambalor Autos handles everything on four wheels — from a secured rental for the weekend to a full repaint, a trusted mechanic, or valuing your trade-in. Every service has a code. Every booking is one message away.</p>
+    <div class="hero-cta">
+      <a class="btn-primary" href="https://wa.me/2349066570889?text=Hi%20Dambalor%20Autos%2C%20I%27d%20like%20to%20know%20more%20about%20your%20services." target="_blank" rel="noopener">
+        Chat on WhatsApp
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="btn-secondary" href="#rentals">View services</a>
+    </div>
+    <div class="hero-plate">
+      <span class="flag">NG</span> DAMBALOR · EST. ENUGU
+    </div>
+  </div>
+</section>
+
+<!-- ================= CAR RENTAL SERVICES ================= -->
+<section class="section" id="rentals">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">01 — Fleet</div>
+        <h2>Car Rental<br>with Security</h2>
+      </div>
+      <p>Five ways to book the fleet, each with its own code. Quote the code when you message us and we'll move straight to availability and pricing.</p>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M3 12l2-6h6l4 6H3z" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 12h18l-1.5 4H4.5L3 12z" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></svg>
+          </div>
+          <span class="plate-badge">CR-01</span>
+        </div>
+        <h3>Airport Transfer</h3>
+        <p>Punctual pickup and drop-off to and from the airport, tracked and secured door to door.</p>
+        <a class="card-cta" href="https://wa.me/2349066570889?text=Hi%20Dambalor%20Autos%2C%20I%27m%20interested%20in%20Airport%20Transfer%20(Code%3A%20CR-01).%20Please%20share%20details." target="_blank" rel="noopener">
+          Book on WhatsApp
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24" stroke-width="1.8"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="plate-badge">CR-02</span>
+        </div>
+        <h3>Daily Hire</h3>
+        <p>Rent by the day for errands, short trips, or when your own car is off the road.</p>
+        <a class="card-cta" href="https://wa.me/2349066570889?text=Hi%20Dambalor%20Autos%2C%20I%27m%20interested%20in%20Daily%20Hire%20(Code%3A%20CR-02).%20Please%20share%20details." target="_blank" rel="noopener">
+          Book on WhatsApp
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M3 17l4-9 4 5 3-4 7 8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="5" cy="19" r="1.5"/><circle cx="19" cy="19" r="1.5"/></svg>
+          </div>
+          <span class="plate-badge">CR-03</span>
+        </div>
+        <h3>Intercity</h3>
+        <p>Travel between cities in comfort, with an experienced driver who knows the road.</p>
+        <a class="card-cta" href="https://wa.me/2349066570889?text=Hi%20Dambalor%20Autos%2C%20I%27m%20interested%20in%20Intercity%20(Code%3A%20CR-03).%20Please%20share%20details." target="_blank" rel="noopener">
+          Book on WhatsApp
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 14.5 7.2 16.9l.9-5.4-3.9-3.8 5.4-.8L12 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="plate-badge">CR-04</span>
+        </div>
+        <h3>Event Hire</h3>
+        <p>Weddings, owambe, corporate functions — a clean, reliable ride for the occasion.</p>
+        <a class="card-cta" href="https://wa.me/2349066570889?text=Hi%20Dambalor%20Autos%2C%20I%27m%20interested%20in%20Event%20Hire%20(Code%3A%20CR-04).%20Please%20share%20details." target="_blank" rel="noopener">
+          Book on WhatsApp
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="plate-badge">CR-05</span>
+        </div>
+        <h3>Corporate Retainer</h3>
+        <p>An ongoing arrangement for businesses that need dependable transport on a schedule.</p>
+        <a class="card-cta" href="https://wa.me/2349066570889?text=Hi%20Dambalor%20Autos%2C%20I%27m%20interested%20in%20Corporate%20Retainer%20(Code%3A%20CR-05).%20Please%20share%20details." target="_blank" rel="noopener">
+          Book on WhatsApp
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRUST STRIP ================= -->
+<div class="strip">
+  <div class="strip-inner">
+    <div class="strip-item"><div class="num">10+</div><div class="label">Services on Ground</div></div>
+    <div class="strip-item"><div class="num">100%</div><div class="label">Secured Rentals</div></div>
+    <div class="strip-item"><div class="num">1</div><div class="label">Message to Book</div></div>
+    <div class="strip-item"><div class="num">ENU</div><div class="label">Based in Enugu</div></div>
+  </div>
+</div>
+
+<!-- ================= OTHER SERVICES ================= -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">02 — Workshop &amp; Trade</div>
+        <h2>Every Other<br>Service We Run</h2>
+      </div>
+      <p>Beyond the fleet — inspection, repairs, buying, selling, and financing. Each has its own code too.</p>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24" stroke-width="1.8"><circle cx="10" cy="10" r="6"/><path d="M20 20l-5.5-5.5" stroke-linecap="round"/><path d="M7 10l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="plate-badge">DA-01</span>
+        </div>
+        <h3>Inspection &amp; Test Run</h3>
+        <p>We inspect and test run any car for you before you commit to buying it.</p>
+        <a class="card-cta" href="https://wa.me/2349066570889?text=Hi%20Dambalor%20Autos%2C%20I%27m%20interested%20in%20Inspection%20%26%20Test%20Run%20(Code%3A%20DA-01).%20Please%20share%20details." target="_blank" rel="noopener">
+          Enquire on WhatsApp
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M12 4v4M12 4l-2 2M12 4l2 2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="15" r="6"/><path d="M9.5 15a2.5 2.5 0 015 0" stroke-linecap="round"/></svg>
+          </div>
+          <span class="plate-badge">DA-02</span>
+        </div>
+        <h3>Car Upgrade</h3>
+        <p>Performance, comfort, and styling upgrades handled by people who know cars.</p>
+        <a class="card-cta" href="https://wa.me/2349066570889?text=Hi%20Dambalor%20Autos%2C%20I%27m%20interested%20in%20Car%20Upgrade%20(Code%3A%20DA-02).%20Please%20share%20details." target="_blank" rel="noopener">
+          Enquire on WhatsApp
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M4 20l1-5 10-10 4 4-10 10-5 1z" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 6l4 4" stroke-linecap="round"/></svg>
+          </div>
+          <span class="plate-badge">DA-03</span>
+        </div>
+        <h3>Car Repainting</h3>
+        <p>Full or partial repaints, colour matched and finished to a showroom standard.</p>
+        <a class="card-cta" href="https://wa.me/2349066570889?text=Hi%20Dambalor%20Autos%2C%20I%27m%20interested%20in%20Car%20Repainting%20(Code%3A%20DA-03).%20Please%20share%20details." target="_blank" rel="noopener">
+          Enquire on WhatsApp
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M4 12a8 8 0 0114-5M20 12a8 8 0 01-14 5" stroke-linecap="round"/><path d="M14 4l4 3-4 1M10 20l-4-3 4-1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="plate-badge">DA-04</span>
+        </div>
+        <h3>Trusted Mechanics &amp; Car Wash</h3>
+        <p>Connecting you with experienced mechanics and reliable car wash services nearby.</p>
+        <a class="card-cta" href="https://wa.me/2349066570889?text=Hi%20Dambalor%20Autos%2C%20I%27m%20interested%20in%20Trusted%20Mechanics%20%26%20Car%20Wash%20(Code%3A%20DA-04).%20Please%20share%20details." target="_blank" rel="noopener">
+          Enquire on WhatsApp
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M3 12l2-6h6l4 6H3z" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 12h18l-1.5 4H4.5L3 12z" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/><path d="M15 4l3 3-3 1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="plate-badge">DA-05</span>
+        </div>
+        <h3>Buy &amp; Sell of Cars</h3>
+        <p>Looking to buy or sell? We handle the sourcing, the paperwork, and the negotiation.</p>
+        <a class="card-cta" href="https://wa.me/2349066570889?text=Hi%20Dambalor%20Autos%2C%20I%27m%20interested%20in%20Buy%20%26%20Sell%20of%20Cars%20(Code%3A%20DA-05).%20Please%20share%20details." target="_blank" rel="noopener">
+          Enquire on WhatsApp
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M17 3l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 7H9a4 4 0 00-4 4" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 21l-4-4 4-4" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 17h12a4 4 0 004-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="plate-badge">DA-06</span>
+        </div>
+        <h3>Car Swapping</h3>
+        <p>Trade your current car for a different one, with a fair swap value on both sides.</p>
+        <a class="card-cta" href="https://wa.me/2349066570889?text=Hi%20Dambalor%20Autos%2C%20I%27m%20interested%20in%20Car%20Swapping%20(Code%3A%20DA-06).%20Please%20share%20details." target="_blank" rel="noopener">
+          Enquire on WhatsApp
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M4 12l2-6h12l2 6" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 12h18v5H3z" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 2v3" stroke-linecap="round"/></svg>
+          </div>
+          <span class="plate-badge">DA-07</span>
+        </div>
+        <h3>Car Detailing</h3>
+        <p>Deep interior and exterior detailing that brings your car back to showroom finish.</p>
+        <a class="card-cta" href="https://wa.me/2349066570889?text=Hi%20Dambalor%20Autos%2C%20I%27m%20interested%20in%20Car%20Detailing%20(Code%3A%20DA-07).%20Please%20share%20details." target="_blank" rel="noopener">
+          Enquire on WhatsApp
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v2M12 15v2M9 10a3 3 0 013-1c1.7 0 3 .9 3 2s-1.3 2-3 2-3 .9-3 2 1.3 2 3 2a3 3 0 003-1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="plate-badge">DA-08</span>
+        </div>
+        <h3>Car Financing</h3>
+        <p>Structured financing options to help you get into a car without paying it all upfront.</p>
+        <a class="card-cta" href="https://wa.me/2349066570889?text=Hi%20Dambalor%20Autos%2C%20I%27m%20interested%20in%20Car%20Financing%20(Code%3A%20DA-08).%20Please%20share%20details." target="_blank" rel="noopener">
+          Enquire on WhatsApp
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M4 6h7M4 6l3-3M4 6l3 3" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 18h-7M20 18l-3 3M20 18l-3-3" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 14h16" stroke-linecap="round"/></svg>
+          </div>
+          <span class="plate-badge">DA-09</span>
+        </div>
+        <h3>Trade-In Valuation</h3>
+        <p>An honest valuation of your current car if you're planning to trade it toward another.</p>
+        <a class="card-cta" href="https://wa.me/2349066570889?text=Hi%20Dambalor%20Autos%2C%20I%27m%20interested%20in%20Trade-In%20Valuation%20(Code%3A%20DA-09).%20Please%20share%20details." target="_blank" rel="noopener">
+          Enquire on WhatsApp
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="wrap">
+    <h2>READY WHEN<br>YOU ARE<span>.</span></h2>
+    <p>Quote a service code or just tell us what you need — we'll take it from there on WhatsApp.</p>
+    <a class="btn-primary" href="https://wa.me/2349066570889?text=Hi%20Dambalor%20Autos%2C%20I%27d%20like%20to%20get%20started." target="_blank" rel="noopener">
+      Message Us on WhatsApp
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+    <div class="footer-socials">
+      <a class="social-btn" href="https://wa.me/2349066570889" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 21l1.65-4.95A8.5 8.5 0 1112 20.5a8.4 8.4 0 01-4.3-1.18L3 21z" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.5 9.5c0 4 3.5 6.5 7 6.5.6 0 1-.5 1-1v-1.3c0-.3-.2-.5-.5-.6l-2-.5c-.3 0-.5 0-.7.2l-.6.7c-1.3-.6-2.4-1.7-3-3l.7-.6c.2-.2.3-.4.2-.7l-.5-2c0-.3-.3-.5-.6-.5H8.9c-.3 0-.4.2-.4.5z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="social-btn" href="https://instagram.com/dambalor_autos" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+      <a class="social-btn" href="https://tiktok.com/@Dambalorautos" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M15 3v10.5a3.5 3.5 0 11-3-3.46" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 3c.4 2.3 2 4 4.5 4.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <div class="footer-meta">
+      <span>DAMBALOR AUTOS · ENUGU, NIGERIA</span>
+      <span>TEL / WHATSAPP: 0906 657 0889</span>
+      <span>© 2026 DAMBALOR AUTOS</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
